@@ -1,0 +1,8 @@
+# Firebase Configuration
+FIREBASE_CRED_PATH=firebase-credentials.json
+FIREBASE_DATABASE_URL=""
+
+
+# For MongoDB Atlas:
+MONGODB_URI=mongodb+srv://InZoneSM:InZone365@cluster0.rpdzsqc.mongodb.net/?retryWrites=true&w=majority
+MONGODB_DB_NAME=InZone_Data
