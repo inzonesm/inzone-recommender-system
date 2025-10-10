@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+  mongo:
+    image: mongo:7
+    container_name: gorse_mongo
+    ports: ["27017:27017"]
+    volumes:
+      - ./mongo-data:/data/db
+
+  gorse-master:
+    image: zhenghaoz/gorse-master:0.4.0
+    container_name: gorse_master
+    volumes: ["./config.toml:/etc/gorse/config.toml:ro"]
+    ports: ["8088:8088"]
+    depends_on: ["mongo"]
+
+  gorse-server:
+    image: zhenghaoz/gorse-server:0.4.0
+    container_name: gorse_server
+    command: 
+      - --master-host
+      - gorse-master
+      - --master-port
+      - "8086"
+      - --http-host
+      - "0.0.0.0"
+      - --http-port
+      - "8087"
+    environment:
+      - GORSE_SERVER_API_KEY=super-secret-key
+    volumes: ["./config.toml:/etc/gorse/config.toml:ro"]
+    ports: ["8087:8087"]
+    depends_on: ["gorse-master"]
+
+  gorse-worker:
+    image: zhenghaoz/gorse-worker:0.4.0
+    container_name: gorse_worker
+    volumes: ["./config.toml:/etc/gorse/config.toml:ro"]
+    depends_on: ["gorse-master"]

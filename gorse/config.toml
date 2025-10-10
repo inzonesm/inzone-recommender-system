@@ -1,0 +1,41 @@
+[database]
+# Data store (MongoDB)
+# data_store  = "mongodb+srv://InZoneSM:InZone365@cluster0.rpdzsqc.mongodb.net/?retryWrites=true&w=majority"
+data_store = "mongodb://mongo:27017/gorse_data"
+
+
+# Cache store (MongoDB) - local container example
+cache_store = "mongodb://mongo:27017/gorse_cache"
+
+table_prefix        = "gorse"
+cache_table_prefix  = "gorse_cache"
+
+[master]
+port = 8086  # gRPC port for communication
+http_port = 8088  # dashboard and metrics
+host = "0.0.0.0"
+
+[server]
+default_n = 10
+host = "0.0.0.0"  # Bind to all interfaces
+port = 8087
+api_key = "super-secret-key"
+# Connect to master service
+master_host = "gorse-master"
+master_port = 8086
+# Helpful defaults for write-back behavior
+auto_insert_user = true
+auto_insert_item = true
+
+[recommend.data_source]
+# Tell Gorse what counts as “positive” vs “read” in YOUR app:
+positive_feedback_types = ["like","share","comment"]
+read_feedback_types     = ["read"]  # your impression/view event
+# Optional: expire stale likes/views after N days (0 = no TTL)
+# positive_feedback_ttl = 180
+# item_ttl = 365
+
+[recommend.offline]
+# Enable collaborative filtering and refresh cadence:
+enable_collaborative_recommend = true
+refresh_recommend_period = "24h"
