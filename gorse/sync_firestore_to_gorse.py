@@ -115,7 +115,7 @@ def fetch_users_from_firestore():
         user_data = doc.to_dict()
         
         # Build labels from user attributes
-        labels = ['human_user']
+        labels = []
         
         # Add interests (categories)
         if 'interests' in user_data and user_data['interests']:
