@@ -41,11 +41,11 @@ read_feedback_types     = ["read"]  # your impression/view event
 # Enable collaborative filtering and refresh cadence:
 enable_collaborative_recommend = true
 refresh_recommend_period = "24h"
-# Check for new data more frequently
-check_recommend_period = "1m"
+# Check for new data very frequently (near real-time)
+check_recommend_period = "10s"  # Check every 10 seconds
 # How often to update popular/latest items
 enable_popular_recommend = true
 enable_latest_recommend = true
 # Fit the recommendation model periodically
-model_fit_period = "60m"
-model_search_period = "60m"
+model_fit_period = "15m"  # Train every 15 minutes for faster updates
+model_search_period = "30m"

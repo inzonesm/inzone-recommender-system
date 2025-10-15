@@ -26,6 +26,5 @@ Thumbs.db
 *.swp
 *.swo
 
-# Local sync scripts (run from local machine)
-sync_firestore_to_remote_gorse.py
+# Local diagnostic tools (run from local machine)
 check_live_data.py
