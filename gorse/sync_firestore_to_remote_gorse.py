@@ -139,8 +139,8 @@ class GorseClient:
 
 def fetch_users_from_firestore():
     """
-    Fetch users from Firestore 'humanUsers' and 'aiUsers' collections
-    Maps uid/doc.id, name, interests, personality, etc.
+    Fetch users from Firestore 'humanUsers' collection
+    Maps uid/doc.id, name, interests, etc.
     """
     users = []
     
@@ -167,34 +167,7 @@ def fetch_users_from_firestore():
         }
         users.append(user)
     
-    # Fetch AI users
-    print("  Fetching aiUsers...")
-    ai_users_ref = db.collection('aiUsers')
-    for doc in ai_users_ref.stream():
-        user_data = doc.to_dict()
-        
-        # Build labels from AI user attributes
-        labels = ['ai_user']
-        
-        # Add personality
-        if 'personality' in user_data and user_data['personality']:
-            labels.append(f"personality_{user_data['personality']}")
-        
-        # Add sub_category
-        if 'sub_category' in user_data and user_data['sub_category']:
-            if isinstance(user_data['sub_category'], list):
-                labels.extend(user_data['sub_category'])
-            else:
-                labels.append(str(user_data['sub_category']))
-        
-        user = {
-            "UserId": doc.id,  # AI users use doc ID
-            "Labels": labels,
-            "Comment": user_data.get('name', '')
-        }
-        users.append(user)
-    
-    print(f"Fetched {len(users)} users from Firestore (humanUsers + aiUsers)")
+    print(f"Fetched {len(users)} human users from Firestore")
     return users
 
 
