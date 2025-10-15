@@ -1,1 +1,31 @@
+# Database data
 mongo-data/
+
+# Local documentation (not needed on server)
+docs/
+
+# Python virtual environment
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Firebase credentials (security)
+firebase-credentials.json
+
+# Environment variables
+.env
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Local sync scripts (run from local machine)
+sync_firestore_to_remote_gorse.py
+check_live_data.py
