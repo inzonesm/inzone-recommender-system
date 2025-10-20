@@ -31,8 +31,8 @@ auto_insert_user = true
 auto_insert_item = true
 
 # Cache settings - reduce cache time for fresher recommendations
-cache_size = 100
-cache_expire = "72h"  # Cache recommendations for 1 hour only
+cache_size = 1000
+cache_expire = "1h"  # Cache recommendations for 1 hour only
 
 [recommend.data_source]
 # Tell Gorse what counts as “positive” vs “read” in YOUR app:
