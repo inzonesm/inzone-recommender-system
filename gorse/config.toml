@@ -51,8 +51,11 @@ enable_latest_recommend = true
 # Fit the recommendation model periodically
 model_fit_period = "15m"  # Train every 15 minutes for faster updates
 model_search_period = "30m"
-# Exploration vs exploitation balance (0.0 = only best items, 1.0 = more diverse)
-explore_recommend = 0.3  # 30% exploration for diversity
+
+# FIXED: explore_recommend needs to be a map with method and values
+[recommend.offline.explore_recommend]
+enable_exploration = true
+explore_method = "uniform"  # or "latest" or "popular"
 
 [recommend.online]
 # Enable real-time online recommendations
