@@ -42,20 +42,16 @@ read_feedback_types     = ["read"]  # your impression/view event
 [recommend.offline]
 # Enable collaborative filtering and refresh cadence:
 enable_collaborative_recommend = true
-refresh_recommend_period = "6h"  # Refresh recommendations more frequently
-# Check for new data very frequently (near real-time)
-check_recommend_period = "10s"  # Check every 10 seconds
-# How often to update popular/latest items
+refresh_recommend_period = "6h"
+check_recommend_period = "10s"
 enable_popular_recommend = true
 enable_latest_recommend = true
-# Fit the recommendation model periodically
-model_fit_period = "15m"  # Train every 15 minutes for faster updates
+model_fit_period = "15m"
 model_search_period = "30m"
 
-# FIXED: explore_recommend needs to be a map with method and values
-[recommend.offline.explore_recommend]
-enable_exploration = true
-explore_method = "uniform"  # or "latest" or "popular"
+# FIXED: explore_recommend is a float between 0.0 and 1.0
+# This adds 30% exploration (random/diverse items) to prevent repetition
+explore_recommend = 0.3
 
 [recommend.online]
 # Enable real-time online recommendations
