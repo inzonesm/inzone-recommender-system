@@ -28,6 +28,8 @@ master_port = 8086
 # Helpful defaults for write-back behavior
 auto_insert_user = true
 auto_insert_item = true
+# Cache settings - reduce cache time for fresher recommendations
+cache_expire = "1h"  # Cache recommendations for 1 hour only
 
 [recommend.data_source]
 # Tell Gorse what counts as “positive” vs “read” in YOUR app:
@@ -40,7 +42,7 @@ read_feedback_types     = ["read"]  # your impression/view event
 [recommend.offline]
 # Enable collaborative filtering and refresh cadence:
 enable_collaborative_recommend = true
-refresh_recommend_period = "24h"
+refresh_recommend_period = "6h"  # Refresh recommendations more frequently
 # Check for new data very frequently (near real-time)
 check_recommend_period = "10s"  # Check every 10 seconds
 # How often to update popular/latest items
@@ -49,3 +51,12 @@ enable_latest_recommend = true
 # Fit the recommendation model periodically
 model_fit_period = "15m"  # Train every 15 minutes for faster updates
 model_search_period = "30m"
+# Exploration vs exploitation balance (0.0 = only best items, 1.0 = more diverse)
+explore_recommend = 0.3  # 30% exploration for diversity
+
+[recommend.online]
+# Enable real-time online recommendations
+enable_online_recommend = true
+fallback_recommend = ["latest", "popular"]  # Fallback strategies
+# Refresh online model frequently
+online_fit_period = "5m"
