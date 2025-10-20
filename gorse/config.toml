@@ -62,3 +62,13 @@ enable_online_recommend = true
 fallback_recommend = ["item_based", "latest"]  # Fallback strategies
 # Refresh online model frequently
 online_fit_period = "5m"
+
+[recommend.replacement]
+# 🎯 Prevent recommending already-read items
+enable_replacement = true
+# Items with 'read' feedback decay over time
+positive_replacement_decay = 0.9  # Decay rate for positive items (like/share/comment)
+read_replacement_decay = 0.8       # Decay rate for read items
+# After how many days can we re-recommend a read item? (higher = longer wait)
+# With decay 0.8, an item needs ~5-7 days before it can be recommended again
+enable_click_through_prediction = true
