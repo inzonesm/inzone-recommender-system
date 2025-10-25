@@ -35,5 +35,10 @@ services:
   gorse-worker:
     image: zhenghaoz/gorse-worker:0.4.0
     container_name: gorse_worker
+    command:
+      - --master-host
+      - gorse-master
+      - --master-port
+      - "8086"
     volumes: ["./config.toml:/etc/gorse/config.toml:ro"]
     depends_on: ["gorse-master"]

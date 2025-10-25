@@ -56,10 +56,26 @@ model_search_period = "30m"
 # This adds 30% exploration (random/diverse items) to prevent repetition
 explore_recommend = { popular = 0.1, latest = 0.2 }
 
+[recommend.collaborative]
+# Enable collaborative filtering methods
+enable_user_based_recommend = true
+enable_item_based_recommend = true
+
+[recommend.user_neighbors]
+# Number of similar users to find (based on behavior patterns)
+neighbor_type = "similar"
+enable_index = true
+
+[recommend.item_neighbors]
+# Number of similar items to find (based on features/labels)
+neighbor_type = "similar"
+enable_index = true
+
 [recommend.online]
 # Enable real-time online recommendations
 enable_online_recommend = true
-fallback_recommend = ["item_based", "latest"]  # Fallback strategies
+# Fallback strategies: prioritize item_based for label matching, then user_based, then latest
+fallback_recommend = ["item_based", "user_based", "latest"]
 # Refresh online model frequently
 online_fit_period = "5m"
 

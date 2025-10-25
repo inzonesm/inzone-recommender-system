@@ -1,2 +1,7 @@
 requests>=2.31.0
 firebase-admin>=6.2.0
+
+# Semantic label matching (optional but recommended)
+sentence-transformers>=2.2.0
+torch>=2.0.0  # Required by sentence-transformers
+numpy>=1.24.0
